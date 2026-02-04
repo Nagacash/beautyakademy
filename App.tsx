@@ -179,7 +179,7 @@ const App: React.FC = () => {
                       transition={{ duration: 1 }}
                       className="aspect-[4/5] relative rounded-[32px] md:rounded-[60px] overflow-hidden border-[6px] md:border-[10px] border-white z-10 shadow-2xl float-animate"
                     >
-                      <img src="/images/so4.jpg" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[2.5s]" alt="The Beauty Artist" />
+                      <img src="/images/so4.webp" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[2.5s]" alt="The Beauty Artist" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#D9B16F]/30 via-transparent to-transparent pointer-events-none" />
                     </motion.div>
                   </div>

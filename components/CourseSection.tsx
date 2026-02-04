@@ -37,7 +37,7 @@ const academyModules: CourseModule[] = [
     zones: ['Lip Flip', 'Russian Lips', 'Hydration', 'Contour'],
     highlight: 'DTC Branding inklusive',
     patientInfo: 'Die Akademie stellt Artist-Modelle.',
-    img: '/images/work/work3.jpeg'
+    img: '/images/so1.webp'
   },
   {
     id: 'filler',
@@ -54,7 +54,7 @@ const academyModules: CourseModule[] = [
     bonus: ['After-Care Kit', 'Premium Zertifikat', 'Mentoring-Flatrate', 'Social Media Guide'],
     zones: ['Cheekbones', 'Jawline', 'Chin', 'Naso-Labial'],
     patientInfo: 'Wir kuratieren Deine Trainings-Patienten.',
-    img: '/images/so2.jpg'
+    img: '/images/so2.webp'
   },
   {
     id: 'meso',
@@ -71,7 +71,7 @@ const academyModules: CourseModule[] = [
     bonus: ['Material-Starter-Set', 'Zertifikat', 'Abrechnungs-Tipps'],
     zones: ['Face Glow', 'Neck', 'Hands', 'Hair Growth'],
     patientInfo: 'Modelle werden durch uns organisiert.',
-    img: '/images/so3.jpg'
+    img: '/images/so3.webp'
   }
 ];
 

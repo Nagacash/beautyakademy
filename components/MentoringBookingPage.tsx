@@ -225,7 +225,7 @@ const MentoringBookingPage: React.FC<MentoringBookingPageProps> = ({ onBack }) =
                 </p>
                 <div className="pt-8 border-t border-white/5 flex items-center space-x-6 mt-8">
                    <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 overflow-hidden grayscale flex-shrink-0">
-                      <img src="/images/team/team1.jpeg" alt="Sonja" className="w-full h-full object-cover" />
+                      <img src="/images/team/team1.webp" alt="Sonja" className="w-full h-full object-cover" />
                    </div>
                    <div>
                       <p className="text-white text-xs font-bold uppercase tracking-widest">Sonja Ackermann</p>
@@ -241,7 +241,7 @@ const MentoringBookingPage: React.FC<MentoringBookingPageProps> = ({ onBack }) =
                 </p>
                 <div className="pt-8 border-t border-white/5 flex items-center space-x-6 mt-8">
                    <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 overflow-hidden grayscale flex-shrink-0">
-                      <img src="/images/team/team4.jpg" alt="Annette" className="w-full h-full object-cover" />
+                      <img src="/images/team/team4.webp" alt="Annette" className="w-full h-full object-cover" />
                    </div>
                    <div>
                       <p className="text-white text-xs font-bold uppercase tracking-widest">Annette Fascher-Wendlandt</p>

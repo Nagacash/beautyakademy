@@ -25,7 +25,7 @@ const modules = [
     description: 'Vom Lippen-Aufbau über Full-Face Restaurationen bis hin zum PDO Fadenlifting. Wir zeigen Dir die Artist-Techniken, die wirklich funktionieren.',
     topics: ['Hyaluronsäure', 'PDO Fäden', 'Lippen-Architektur'],
     target: 'pro-hyaluronic',
-    img: '/images/work/doll-lips.jpg',
+    img: '/images/work/doll-lips.webp',
     style: 'pearl'
   },
   {

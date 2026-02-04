@@ -49,7 +49,7 @@ export const HOME_BEATS: BeatData[] = [
 ];
 
 export const getFrameUrl = (index: number, page: PageType = 'home'): string => {
-  const localImages = ['/images/so1.jpg', '/images/so2.jpg', '/images/so3.jpg', '/images/so4.jpg', '/images/so5.jpg', '/images/so6.jpg', '/images/so7.jpg'];
+  const localImages = ['/images/so1.webp', '/images/so2.webp', '/images/so3.webp', '/images/so4.webp', '/images/so5.webp', '/images/so6.webp', '/images/so7.webp'];
   return localImages[index % localImages.length];
 };
 
