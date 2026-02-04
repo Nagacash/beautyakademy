@@ -10,8 +10,8 @@ interface MesotherapyPageProps {
 }
 
 const MesotherapyPage: React.FC<MesotherapyPageProps> = ({ onBack }) => {
-  const [loadProgress, setLoadProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(100);
+  const [isLoaded, setIsLoaded] = useState(true);
   const { scrollYProgress } = useScroll();
 
   const indicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);

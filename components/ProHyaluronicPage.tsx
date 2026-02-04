@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import ScrollytellingCanvas from './ScrollytellingCanvas';
 import OverlayText from './OverlayText';
@@ -9,8 +9,7 @@ interface ProHyaluronicPageProps {
 }
 
 const ProHyaluronicPage: React.FC<ProHyaluronicPageProps> = ({ onBack }) => {
-  const [loadProgress, setLoadProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const { scrollYProgress } = useScroll();
   const accentColor = '#D9B16F';
 
@@ -20,7 +19,7 @@ const ProHyaluronicPage: React.FC<ProHyaluronicPageProps> = ({ onBack }) => {
     <div className="relative min-h-[400vh] bg-[#050505]">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center mix-blend-difference">
-        <button 
+        <button
           onClick={onBack}
           className="text-[10px] tracking-[0.4em] text-white/60 hover:text-white transition-all uppercase flex items-center group font-bold"
         >
@@ -30,33 +29,33 @@ const ProHyaluronicPage: React.FC<ProHyaluronicPageProps> = ({ onBack }) => {
       </nav>
 
       <div className="relative h-[400vh] z-10">
-        <ScrollytellingCanvas 
-          onProgress={setLoadProgress} 
-          onLoaded={() => setIsLoaded(true)} 
+        <ScrollytellingCanvas
+          onProgress={() => { }}
+          onLoaded={() => { }}
           customFrameUrl={(i) => getFrameUrl(i, 'pro-hyaluronic')}
           bgColor="#050505"
         />
 
         <div className="sticky top-0 h-screen w-full pointer-events-none overflow-hidden">
           {HYALURONIC_BEATS.map((beat) => (
-            <OverlayText 
-              key={beat.id} 
-              beat={beat} 
-              scrollProgress={scrollYProgress} 
+            <OverlayText
+              key={beat.id}
+              beat={beat}
+              scrollProgress={scrollYProgress}
               theme="dark"
             />
           ))}
-          
-          <motion.div 
+
+          <motion.div
             style={{ opacity: indicatorOpacity }}
             className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-30"
           >
             <span style={{ color: accentColor }} className="text-[10px] tracking-[0.5em] uppercase mb-4 font-bold opacity-60">Die Kunst des Volumens</span>
-            <motion.div 
+            <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               style={{ background: `linear-gradient(to b, ${accentColor}99, transparent)` }}
-              className="w-[1px] h-12" 
+              className="w-[1px] h-12"
             />
           </motion.div>
         </div>
@@ -89,11 +88,11 @@ const ProHyaluronicPage: React.FC<ProHyaluronicPageProps> = ({ onBack }) => {
               </ul>
             </motion.div>
             <motion.div
-               initial={{ opacity: 0, scale: 0.9 }}
-               whileInView={{ opacity: 1, scale: 1 }}
-               viewport={{ once: true }}
-               style={{ borderColor: `${accentColor}33` }}
-               className="aspect-square bg-[#1C1917]/80 backdrop-blur-3xl rounded-[60px] border flex items-center justify-center relative overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              style={{ borderColor: `${accentColor}33` }}
+              className="aspect-square bg-[#1C1917]/80 backdrop-blur-3xl rounded-[60px] border flex items-center justify-center relative overflow-hidden shadow-2xl"
             >
               <div style={{ backgroundColor: accentColor }} className="absolute -top-32 -right-32 w-80 h-80 opacity-[0.05] blur-[120px] rounded-full pointer-events-none" />
               <div className="text-center z-10 p-12">
@@ -109,14 +108,14 @@ const ProHyaluronicPage: React.FC<ProHyaluronicPageProps> = ({ onBack }) => {
       {/* Enrollment Section */}
       <section className="relative h-screen flex flex-col items-center justify-center bg-[#050505] z-30 overflow-hidden py-32">
         <div style={{ backgroundColor: accentColor }} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.05] rounded-full blur-[150px] pointer-events-none" />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center z-10 px-6 max-w-4xl"
         >
           <h4 style={{ color: accentColor }} className="text-[12px] font-bold tracking-[0.6em] uppercase mb-12">Sichere Dir Dein Erbe</h4>
-          <h2 className="text-5xl md:text-[10rem] font-black tracking-tighter mb-16 uppercase leading-[0.7] italic text-white">RECLAIM <br/> VOLUME.</h2>
+          <h2 className="text-5xl md:text-[10rem] font-black tracking-tighter mb-16 uppercase leading-[0.7] italic text-white">RECLAIM <br /> VOLUME.</h2>
           <button className="px-20 py-8 btn-premium text-[14px] uppercase tracking-[0.4em] rounded-full">
             JETZT FÜR MODUL 03 ANMELDEN
           </button>

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useScroll, motion, useTransform, AnimatePresence } from 'framer-motion';
 import ScrollytellingCanvas from './ScrollytellingCanvas';
 import OverlayText from './OverlayText';
@@ -10,8 +10,7 @@ interface FacultyPageProps {
 }
 
 const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
-  const [loadProgress, setLoadProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const { scrollYProgress } = useScroll();
 
   const members = [
@@ -46,7 +45,7 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
   ];
 
   return (
-    <div className="relative min-h-[600vh] bg-[#050505]">
+    <div className="relative min-h-[600vh] bg-[#050505] overflow-x-hidden">
       <nav className="fixed top-0 w-full z-50 px-6 py-6 md:py-8 flex justify-between items-center mix-blend-difference">
         <button onClick={onBack} className="text-[10px] tracking-[0.2em] md:tracking-[0.4em] text-white/60 hover:text-white transition-all uppercase flex items-center group">
           <span className="mr-2 md:mr-4 group-hover:-translate-x-2 transition-transform">←</span> Zurück
@@ -55,7 +54,7 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
       </nav>
 
       <div className="relative min-h-[160vh] md:min-h-[200vh] z-10">
-        <ScrollytellingCanvas onProgress={setLoadProgress} onLoaded={() => setIsLoaded(true)} customFrameUrl={(i) => getFrameUrl(i, 'faculty')} />
+        <ScrollytellingCanvas onProgress={() => { }} onLoaded={() => { }} customFrameUrl={(i) => getFrameUrl(i, 'faculty')} />
         <div className="sticky top-0 h-screen w-full pointer-events-none overflow-hidden">
           {FACULTY_BEATS.map((beat) => (
             <OverlayText key={beat.id} beat={beat} scrollProgress={scrollYProgress} />

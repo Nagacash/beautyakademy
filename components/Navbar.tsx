@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PageType } from '../types';
 
 interface NavbarProps {
-  onNavigate: (page: PageType) => void;
+  onNavigate: (page: PageType, scrollId?: string) => void;
   currentPage: PageType;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
@@ -74,15 +74,13 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
   ];
 
   const handleLinkClick = (link: NavLink, subLink?: SubLink) => {
-    onNavigate(link.target);
+    const scrollId = subLink?.scrollId || link.scrollId;
+    
     setMobileMenuOpen(false);
     setActiveDropdown(null);
-    const scrollId = subLink?.scrollId || link.scrollId;
-    if (scrollId) {
-      setTimeout(() => {
-        document.getElementById(scrollId)?.scrollIntoView({ behavior: 'smooth' });
-      }, 150);
-    }
+    
+    // Always use onNavigate - it handles both page changes and scrolling
+    onNavigate(link.target, scrollId);
   };
 
   const isLight = theme === 'light';

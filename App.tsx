@@ -33,6 +33,7 @@ const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [sparkles, setSparkles] = useState<{ id: number, x: number, y: number }[]>([]);
+  const [pendingScrollId, setPendingScrollId] = useState<string | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
 
   const { scrollYProgress } = useScroll();
@@ -41,6 +42,26 @@ const App: React.FC = () => {
   const currentBg = theme === 'light' ? '#FAFAF9' : '#1C1917';
   const currentText = theme === 'light' ? '#292524' : '#FAFAF9';
   const accentColor = '#D9B16F'; // Luxe Champagne Gold
+
+  // Decoupled Loading Logic for Instant Mobile Feel
+  useEffect(() => {
+    // Animate progress from 0 to 100 over 1.5s
+    const startTime = Date.now();
+    const duration = 1500;
+
+    const interval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(100, (elapsed / duration) * 100);
+      setLoadProgress(progress);
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(() => setIsLoaded(true), 200); // Short buffer at 100%
+      }
+    }, 16);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -68,11 +89,52 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    lenisRef.current?.scrollTo(0, { immediate: true });
+    if (!pendingScrollId) {
+      window.scrollTo(0, 0);
+      lenisRef.current?.scrollTo(0, { immediate: true });
+    }
     document.body.style.backgroundColor = currentBg;
     document.body.style.color = currentText;
   }, [currentPage, theme, currentBg, currentText]);
+
+  useEffect(() => {
+    if (pendingScrollId) {
+      let attempts = 0;
+      const maxAttempts = 50; // Increased to 50 (5s) to account for page transition delays (1s exit)
+
+      const scrollToElement = () => {
+        const element = document.getElementById(pendingScrollId);
+        if (element) {
+          // Stop Lenis temporarily for reliable scroll
+          lenisRef.current?.stop();
+
+          const rect = element.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = rect.top + scrollTop - 100; // Adjusted offset for better visibility
+
+          // Scroll immediately
+          window.scrollTo({ top: targetY, behavior: 'auto' });
+
+          // Resume Lenis after scroll
+          setTimeout(() => {
+            lenisRef.current?.start();
+          }, 100);
+
+          setPendingScrollId(null);
+        } else if (attempts < maxAttempts) {
+          attempts++;
+          setTimeout(scrollToElement, 100); // Poll every 100ms
+        } else {
+          // Timeout
+          setPendingScrollId(null);
+        }
+      };
+
+      // Start trying immediately after a short render tick
+      const timer = setTimeout(scrollToElement, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [pendingScrollId, currentPage]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -88,9 +150,25 @@ const App: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleNavigate = (page: PageType) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'instant' });
+  const handleNavigate = (page: PageType, scrollId?: string) => {
+    const isCurrentPage = currentPage === page;
+
+    if (isCurrentPage && scrollId) {
+      // Same page - scroll directly with Lenis
+      const element = document.getElementById(scrollId);
+      if (element && lenisRef.current) {
+        lenisRef.current.scrollTo(element, { offset: -100, duration: 1.5 });
+      }
+    } else {
+      // Different page - set pending scroll and navigate
+      if (scrollId) {
+        setPendingScrollId(scrollId);
+      }
+      setCurrentPage(page);
+      if (!scrollId) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    }
   };
 
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');

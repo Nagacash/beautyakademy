@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import ScrollytellingCanvas from './ScrollytellingCanvas';
 import OverlayText from './OverlayText';
@@ -10,8 +10,7 @@ interface Masterclass2025PageProps {
 }
 
 const Masterclass2025Page: React.FC<Masterclass2025PageProps> = ({ onBack }) => {
-  const [loadProgress, setLoadProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const { scrollYProgress } = useScroll();
 
   const indicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
@@ -19,7 +18,7 @@ const Masterclass2025Page: React.FC<Masterclass2025PageProps> = ({ onBack }) => 
   return (
     <div className="relative min-h-[400vh] bg-[#050505]">
       <nav className="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center mix-blend-difference">
-        <button 
+        <button
           onClick={onBack}
           className="text-[10px] tracking-[0.4em] text-white/60 hover:text-white transition-all uppercase flex items-center group"
         >
@@ -29,30 +28,30 @@ const Masterclass2025Page: React.FC<Masterclass2025PageProps> = ({ onBack }) => 
       </nav>
 
       <div className="relative h-[400vh] z-10">
-        <ScrollytellingCanvas 
-          onProgress={setLoadProgress} 
-          onLoaded={() => setIsLoaded(true)} 
+        <ScrollytellingCanvas
+          onProgress={() => { }}
+          onLoaded={() => { }}
           customFrameUrl={(i) => getFrameUrl(i, 'masterclass-2025')}
         />
 
         <div className="sticky top-0 h-screen w-full pointer-events-none overflow-hidden">
           {MASTERCLASS_BEATS.map((beat) => (
-            <OverlayText 
-              key={beat.id} 
-              beat={beat} 
-              scrollProgress={scrollYProgress} 
+            <OverlayText
+              key={beat.id}
+              beat={beat}
+              scrollProgress={scrollYProgress}
             />
           ))}
-          
-          <motion.div 
+
+          <motion.div
             style={{ opacity: indicatorOpacity }}
             className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-30"
           >
             <span className="text-[10px] tracking-[0.5em] text-[#E2C3B1]/60 uppercase mb-4">The Global Summit</span>
-            <motion.div 
+            <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-[1px] h-12 bg-gradient-to-b from-[#E2C3B1]/60 to-transparent" 
+              className="w-[1px] h-12 bg-gradient-to-b from-[#E2C3B1]/60 to-transparent"
             />
           </motion.div>
         </div>
@@ -84,10 +83,10 @@ const Masterclass2025Page: React.FC<Masterclass2025PageProps> = ({ onBack }) => 
               </div>
             </motion.div>
             <motion.div
-               initial={{ opacity: 0, scale: 0.9 }}
-               whileInView={{ opacity: 1, scale: 1 }}
-               viewport={{ once: true }}
-               className="aspect-square bg-[#E2C3B1]/[0.01] rounded-2xl border border-[#E2C3B1]/10 flex flex-col p-12 relative overflow-hidden"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="aspect-square bg-[#E2C3B1]/[0.01] rounded-2xl border border-[#E2C3B1]/10 flex flex-col p-12 relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#E2C3B1]/5 to-transparent blur-3xl opacity-50" />
               <div className="z-10 h-full flex flex-col justify-between">
@@ -113,13 +112,13 @@ const Masterclass2025Page: React.FC<Masterclass2025PageProps> = ({ onBack }) => 
 
       <section className="relative h-screen flex flex-col items-center justify-center bg-[#050505] z-30 overflow-hidden py-32">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E2C3B1]/[0.03] rounded-full blur-[100px] pointer-events-none" />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center z-10 px-6"
         >
-          <h2 className="text-4xl md:text-7xl font-black tracking-tighter mb-12 uppercase leading-none">Elevate Your <br/> Standard.</h2>
+          <h2 className="text-4xl md:text-7xl font-black tracking-tighter mb-12 uppercase leading-none">Elevate Your <br /> Standard.</h2>
           <button className="px-16 py-6 btn-premium text-black font-bold uppercase text-[10px] tracking-[0.3em] rounded-full shadow-xl shadow-[#E2C3B1]/5">
             Apply for Invitation
           </button>

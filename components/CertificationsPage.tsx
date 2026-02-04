@@ -10,8 +10,8 @@ interface CertificationsPageProps {
 }
 
 const CertificationsPage: React.FC<CertificationsPageProps> = ({ onBack }) => {
-  const [loadProgress, setLoadProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(100);
+  const [isLoaded, setIsLoaded] = useState(true);
   const { scrollYProgress } = useScroll();
 
   return (

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import ScrollytellingCanvas from './ScrollytellingCanvas';
 import OverlayText from './OverlayText';
@@ -10,12 +10,11 @@ interface OurStoryPageProps {
 }
 
 const OurStoryPage: React.FC<OurStoryPageProps> = ({ onBack }) => {
-  const [loadProgress, setLoadProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const { scrollYProgress } = useScroll();
 
   return (
-    <div className="relative bg-[#050505]">
+    <div className="relative min-h-screen bg-[#050505] overflow-x-hidden">
       {/* Fixed Navigation */}
       <nav className="fixed top-0 w-full z-50 px-6 py-6 md:py-8 flex justify-between items-center mix-blend-difference">
         <button onClick={onBack} className="text-[10px] tracking-[0.2em] md:tracking-[0.4em] text-white/60 hover:text-white transition-all uppercase flex items-center group">
@@ -26,7 +25,7 @@ const OurStoryPage: React.FC<OurStoryPageProps> = ({ onBack }) => {
 
       {/* Scrollytelling Visual Section */}
       <div className="relative min-h-[160vh] md:min-h-[200vh] z-10">
-        <ScrollytellingCanvas onProgress={setLoadProgress} onLoaded={() => setIsLoaded(true)} customFrameUrl={(i) => getFrameUrl(i, 'our-story')} />
+        <ScrollytellingCanvas onProgress={() => { }} onLoaded={() => { }} customFrameUrl={(i) => getFrameUrl(i, 'our-story')} />
         <div className="sticky top-0 h-screen w-full pointer-events-none overflow-hidden">
           {STORY_BEATS.map((beat) => (
             <OverlayText key={beat.id} beat={beat} scrollProgress={scrollYProgress} />
@@ -35,7 +34,7 @@ const OurStoryPage: React.FC<OurStoryPageProps> = ({ onBack }) => {
       </div>
 
       {/* Founders Section */}
-      <section className="relative z-20 bg-[#050505] py-24 md:py-48 px-6 lg:px-24">
+      <section id="founders" className="relative z-20 bg-[#050505] py-24 md:py-48 px-6 lg:px-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -107,7 +106,7 @@ const OurStoryPage: React.FC<OurStoryPageProps> = ({ onBack }) => {
       </section>
 
       {/* Philosophy Section */}
-      <section className="relative z-20 bg-[#080808] py-24 md:py-48 px-6 lg:px-24 border-y border-white/5">
+      <section id="philosophy" className="relative z-20 bg-[#080808] py-24 md:py-48 px-6 lg:px-24 border-y border-white/5">
         <div className="max-w-5xl mx-auto text-center space-y-12 md:space-y-16">
           <motion.h3
             initial={{ opacity: 0, y: 30 }}
