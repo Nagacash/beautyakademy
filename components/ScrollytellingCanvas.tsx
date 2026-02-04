@@ -56,22 +56,42 @@ const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({
   useEffect(() => {
     const loadedImages: HTMLImageElement[] = [];
     let count = 0;
+    let completed = false;
     const urlProvider = customFrameUrl || ((i: number) => getFrameUrl(i));
+
+    const finishLoading = () => {
+      if (completed) return;
+      completed = true;
+      setImages(loadedImages);
+      setImagesReady(true);
+      onLoaded();
+    };
+
+    const handleComplete = () => {
+      count++;
+      onProgress((count / FRAME_COUNT) * 100);
+      if (count === FRAME_COUNT) {
+        finishLoading();
+      }
+    };
 
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new Image();
       img.src = urlProvider(i);
-      img.onload = () => {
-        count++;
-        onProgress((count / FRAME_COUNT) * 100);
-        if (count === FRAME_COUNT) {
-          setImages(loadedImages);
-          setImagesReady(true);
-          onLoaded();
-        }
-      };
+      img.onload = handleComplete;
+      img.onerror = handleComplete;
       loadedImages.push(img);
     }
+
+    // Fallback: force complete after 5 seconds on mobile
+    const timeout = setTimeout(() => {
+      if (!completed) {
+        onProgress(100);
+        finishLoading();
+      }
+    }, 5000);
+
+    return () => clearTimeout(timeout);
   }, [customFrameUrl]);
 
   // Initial draw and Resize handling
