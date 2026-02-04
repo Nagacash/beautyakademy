@@ -21,6 +21,7 @@ import AlumniNetworkPage from './components/AlumniNetworkPage';
 import MesotherapyPage from './components/MesotherapyPage';
 import MentoringBookingPage from './components/MentoringBookingPage';
 import LegalPage from './components/LegalPage';
+import LegalCompliancePage from './components/LegalCompliancePage';
 import Navbar from './components/Navbar';
 import LiquidGlassBackground from './components/LiquidGlassBackground';
 import CookieBanner from './components/CookieBanner';
@@ -65,13 +66,14 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.8,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.5,
-      touchMultiplier: 2.5,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      lerp: 0.1,
     });
 
     lenisRef.current = lenis;
@@ -200,7 +202,7 @@ const App: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      {isLoaded && <Navbar onNavigate={handleNavigate} currentPage={currentPage} theme={theme} onToggleTheme={toggleTheme} />}
+      {isLoaded && currentPage === 'home' && <Navbar onNavigate={handleNavigate} currentPage={currentPage} theme={theme} onToggleTheme={toggleTheme} />}
 
       <AnimatePresence mode="wait">
         {currentPage === 'home' && (
@@ -305,6 +307,7 @@ const App: React.FC = () => {
         {currentPage === 'privacy' && <LegalPage key="privacy" type="privacy" theme={theme} onBack={() => handleNavigate('home')} />}
         {currentPage === 'tos' && <LegalPage key="tos" type="tos" theme={theme} onBack={() => handleNavigate('home')} />}
         {currentPage === 'impressum' && <LegalPage key="impressum" type="impressum" theme={theme} onBack={() => handleNavigate('home')} />}
+        {currentPage === 'legal-compliance' && <LegalCompliancePage key="lc" theme={theme} onBack={() => handleNavigate('home')} />}
       </AnimatePresence>
 
       <Footer onNavigate={handleNavigate} theme={theme} />

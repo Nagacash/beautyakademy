@@ -18,7 +18,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, theme = 'light' }) => {
       links: [
         { name: '1:1 Praxisbesuch', target: 'mentoring-booking' },
         { name: 'ZAS Abrechnung', target: null },
-        { name: 'Legal & Compliance', target: 'certifications' }
+        { name: 'Legal & Compliance', target: 'legal-compliance' }
       ]
     },
     {

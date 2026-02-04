@@ -1,4 +1,4 @@
-export type PageType = 'home' | 'pro-hyaluronic' | 'mitochondrien' | 'hypoxie-tech' | 'masterclass-2025' | 'our-story' | 'faculty' | 'certifications' | 'alumni-network' | 'mesotherapy' | 'mentoring-booking' | 'privacy' | 'tos' | 'impressum';
+export type PageType = 'home' | 'pro-hyaluronic' | 'mitochondrien' | 'hypoxie-tech' | 'masterclass-2025' | 'our-story' | 'faculty' | 'certifications' | 'alumni-network' | 'mesotherapy' | 'mentoring-booking' | 'privacy' | 'tos' | 'impressum' | 'legal-compliance';
 
 declare global {
   interface Window {
