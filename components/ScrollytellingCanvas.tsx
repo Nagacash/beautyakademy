@@ -52,11 +52,18 @@ const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({
     ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
   };
 
-  // Preload Images
+  // Preload Images with Mobile Optimization
   useEffect(() => {
     const loadedImages: HTMLImageElement[] = [];
     let count = 0;
     let completed = false;
+    // Mobile check to potentially load fewer frames or lower res (simplified here to just non-blocking)
+    const isMobile = window.innerWidth < 768;
+
+    // On mobile, we don't want to block for too long.
+    // We treat it as "loaded" much faster to unblock the UI.
+    const FORCE_COMPLETE_TIME = isMobile ? 1500 : 4000;
+
     const urlProvider = customFrameUrl || ((i: number) => getFrameUrl(i));
 
     const finishLoading = () => {
@@ -69,7 +76,8 @@ const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({
 
     const handleComplete = () => {
       count++;
-      onProgress((count / FRAME_COUNT) * 100);
+      // Accelerate progress visual
+      onProgress(Math.min(100, Math.round((count / FRAME_COUNT) * 100)));
       if (count === FRAME_COUNT) {
         finishLoading();
       }
@@ -83,13 +91,17 @@ const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({
       loadedImages.push(img);
     }
 
-    // Fallback: force complete after 5 seconds on mobile
+    // Safety timeout - ensure app opens even if images fail
     const timeout = setTimeout(() => {
       if (!completed) {
+        console.log('Force finishing load due to timeout');
+        setImages(loadedImages); // Show whatever we have
+        setImagesReady(true);
         onProgress(100);
-        finishLoading();
+        onLoaded();
+        completed = true;
       }
-    }, 5000);
+    }, FORCE_COMPLETE_TIME);
 
     return () => clearTimeout(timeout);
   }, [customFrameUrl]);
@@ -139,8 +151,8 @@ const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({
       {/* Enhanced Dynamic Vignette Overlay - Updated to Gold tint */}
       <div
         className={`absolute inset-0 pointer-events-none transition-colors duration-1000 ${bgColor === '#050505'
-            ? 'bg-gradient-to-b from-black/70 via-transparent to-black/90 shadow-[inset_0_0_300px_rgba(0,0,0,0.8)]'
-            : 'bg-gradient-to-b from-white/40 via-transparent to-white/50 shadow-[inset_0_0_200px_rgba(217,177,111,0.15)]'
+          ? 'bg-gradient-to-b from-black/70 via-transparent to-black/90 shadow-[inset_0_0_300px_rgba(0,0,0,0.8)]'
+          : 'bg-gradient-to-b from-white/40 via-transparent to-white/50 shadow-[inset_0_0_200px_rgba(217,177,111,0.15)]'
           }`}
       />
     </div>
