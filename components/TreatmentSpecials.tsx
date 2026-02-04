@@ -51,7 +51,7 @@ const offers: SpecialOffer[] = [
     newPrice: '99€',
     duration: 'ca. 60 Minuten',
     description: 'Unterstützt den natürlichen Lymphfluss und hilft bei der Regeneration des Gewebes nach ästhetischen Eingriffen.',
-    img: '/images/treatment/Lymph.png'
+    img: '/images/treatment/Lymph.jpg'
   }
 ];
 

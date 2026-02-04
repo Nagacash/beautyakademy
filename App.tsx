@@ -29,8 +29,8 @@ import { PageType } from './types';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
-  const [loadProgress, setLoadProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(100);
+  const [isLoaded, setIsLoaded] = useState(true);
   const [theme, setTheme] = useState<'light' | 'dark'>('light'); 
   const [sparkles, setSparkles] = useState<{id: number, x: number, y: number}[]>([]);
   const lenisRef = useRef<Lenis | null>(null);

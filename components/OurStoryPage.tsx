@@ -98,7 +98,7 @@ const OurStoryPage: React.FC<OurStoryPageProps> = ({ onBack }) => {
                 transition={{ delay: 0.3 }}
                 className="aspect-[3/4] rounded-[40px] overflow-hidden border border-white/5 group"
               >
-                <img src="/images/team/team7.png" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt="Team" />
+                <img src="/images/team/team7.jpg" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt="Team" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#050505] via-transparent to-transparent" />
               </motion.div>
             </div>

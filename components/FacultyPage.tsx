@@ -184,7 +184,7 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
                 </div>
                 <div className="aspect-[3/4] bg-white/[0.02] border border-white/5 rounded-[40px] overflow-hidden relative group shadow-[0_0_100px_rgba(226,195,177,0.05)]">
                   <img
-                    src="/images/team/team5.png"
+                    src="/images/team/team5.jpg"
                     alt="Sonja Ackermann & Annette Fascher-Wendlandt"
                     className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 ease-in-out scale-105 group-hover:scale-100"
                   />
