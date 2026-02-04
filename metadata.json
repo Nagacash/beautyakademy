@@ -1,0 +1,9 @@
+
+{
+  "name": "BeautyAkademy Antigravity",
+  "description": "A premium scrollytelling experience for BeautyAkademy, featuring a scroll-linked canvas animation of product transformation and high-end luxury aesthetics.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

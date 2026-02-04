@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeautyAkademy | The Artist's Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1C1917;    
+            --cta: #D9B16F;        /* Luxe Champagne Gold */
+            --background: #FAFAF9; 
+            --text: #292524;       
+            --accent: #B8860B;     /* Deep Bronze */
+            --gold-light: #F3E5AB;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s ease;
+            line-height: 1.6;
+        }
+
+        .vogue-serif { font-family: 'Playfair Display', serif; }
+        .data-inter { font-family: 'Inter', sans-serif; }
+        .body-montserrat { font-family: 'Montserrat', sans-serif; }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .gloss-onyx {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(60px);
+            border: 1px solid rgba(217, 177, 111, 0.15);
+            box-shadow: 0 40px 120px -20px rgba(0, 0, 0, 0.8);
+        }
+
+        .gloss-marble {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(60px);
+            border: 1px solid rgba(217, 177, 111, 0.1);
+            box-shadow: 0 40px 120px -20px rgba(184, 134, 11, 0.08);
+        }
+
+        /* High-Fashion Button Styles */
+        .btn-money, .btn-premium {
+            transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+            font-weight: 800;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .btn-money {
+            background: #000;
+            color: #D9B16F;
+            border: 1px solid #D9B16F;
+            box-shadow: 0 10px 40px -10px rgba(217, 177, 111, 0.4);
+        }
+
+        .btn-money:hover {
+            transform: translateY(-4px);
+            background: #D9B16F;
+            color: #000;
+            box-shadow: 0 25px 60px -5px rgba(217, 177, 111, 0.6);
+        }
+
+        .btn-premium {
+            background: transparent;
+            color: #000;
+            border: 2px solid #000;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-4px);
+            background: #000;
+            color: #FFF;
+            box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Shimmer Effect for Text */
+        .text-shimmer-glamour {
+          background: linear-gradient(90deg, #FFFFFF 0%, #D9B16F 50%, #FFFFFF 100%);
+          background-size: 200% auto;
+          color: transparent;
+          -webkit-background-clip: text;
+          background-clip: text;
+          animation: fashionShimmer 5s linear infinite;
+        }
+
+        @keyframes fashionShimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: var(--cta); border-radius: 10px; }
+
+        .gooey-container { filter: url('#gooey'); }
+        
+        @keyframes float-luxury {
+            0%, 100% { transform: translateY(0) rotate(0.2deg); }
+            50% { transform: translateY(-25px) rotate(-0.2deg); }
+        }
+        .float-animate { animation: float-luxury 10s infinite ease-in-out; }
+
+        .card-lift {
+            transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-lift:hover {
+            transform: translateY(-12px) perspective(2000px) rotateX(1deg);
+            box-shadow: 0 80px 150px -30px rgba(184, 134, 11, 0.2);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 2px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(184, 134, 11, 0.02);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: var(--cta);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.30.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="35" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 40 -15" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
