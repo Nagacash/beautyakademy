@@ -26,8 +26,8 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const navLinks: NavLink[] = [
-    { 
-      name: 'ACADEMY', 
+    {
+      name: 'ACADEMY',
       target: 'home' as PageType,
       subLinks: [
         { name: 'Philosophy', scrollId: 'philosophy' },
@@ -36,16 +36,16 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
         { name: 'Mentoring', scrollId: 'mentoring' },
       ]
     },
-    { 
-      name: 'MENTORSHIP', 
+    {
+      name: 'MENTORSHIP',
       target: 'mentoring-booking' as PageType,
       subLinks: [
         { name: 'Packages', scrollId: 'packages' },
         { name: 'Booking', scrollId: 'booking' },
       ]
     },
-    { 
-      name: 'FACULTY', 
+    {
+      name: 'FACULTY',
       target: 'faculty' as PageType,
       subLinks: [
         { name: 'Team', scrollId: 'team' },
@@ -53,8 +53,8 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
       ]
     },
     { name: 'COURSES', target: 'home' as PageType, scrollId: 'courses' },
-    { 
-      name: 'STORY', 
+    {
+      name: 'STORY',
       target: 'our-story' as PageType,
       subLinks: [
         { name: 'Founders', scrollId: 'founders' },
@@ -84,20 +84,20 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
     <>
       <motion.nav
         initial={{ y: 0 }}
-        animate={{ 
+        animate={{
           backgroundColor: navBg,
           borderBottomColor: borderColor
         }}
-        className="fixed top-0 w-full z-[70] px-6 md:px-12 py-5 border-b shadow-2xl"
+        className="fixed top-0 w-full z-[70] px-6 md:px-12 py-4 md:py-5 border-b shadow-2xl transition-all duration-500"
       >
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-          
-          <motion.div 
+
+          <motion.div
             onClick={() => onNavigate('home')}
-            className="cursor-pointer group flex items-center justify-start"
+            className="cursor-pointer group flex items-center justify-start z-[90] relative"
             whileHover={{ scale: 1.02 }}
           >
-            <h1 className={`font-black text-xl md:text-2xl tracking-[0.4em] uppercase transition-all duration-500 group-hover:text-[#D9B16F] ${textColor}`}>
+            <h1 className={`font-black text-sm md:text-2xl tracking-[0.2em] md:tracking-[0.4em] uppercase transition-all duration-500 group-hover:text-[#D9B16F] ${textColor}`}>
               BEAUTYAKADEMY
             </h1>
           </motion.div>
@@ -112,16 +112,15 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
               >
                 <button
                   onClick={() => handleLinkClick(link)}
-                  className={`text-[11px] font-black tracking-[0.4em] uppercase transition-all duration-500 hover:text-[#D9B16F] relative group ${
-                    currentPage === link.target 
-                      ? 'text-[#D9B16F]' 
-                      : (theme === 'light' ? 'text-[#78716C]' : 'text-white/60')
-                  }`}
+                  className={`text-[11px] font-black tracking-[0.4em] uppercase transition-all duration-500 hover:text-[#D9B16F] relative group ${currentPage === link.target
+                    ? 'text-[#D9B16F]'
+                    : (theme === 'light' ? 'text-[#78716C]' : 'text-white/60')
+                    }`}
                 >
                   {link.name}
                   <span className={`absolute -bottom-1 left-0 h-[2px] bg-[#D9B16F] transition-all duration-500 ${currentPage === link.target ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                 </button>
-                
+
                 <AnimatePresence>
                   {link.subLinks && activeDropdown === link.name && (
                     <motion.div
@@ -129,19 +128,17 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 py-3 px-2 rounded-2xl border shadow-2xl min-w-[160px] ${
-                        theme === 'light' 
-                          ? 'bg-white/95 backdrop-blur-xl border-[#D9B16F]/10' 
-                          : 'bg-[#0a0a0a]/95 backdrop-blur-xl border-white/10'
-                      }`}
+                      className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 py-3 px-2 rounded-2xl border shadow-2xl min-w-[160px] ${theme === 'light'
+                        ? 'bg-white/95 backdrop-blur-xl border-[#D9B16F]/10'
+                        : 'bg-[#0a0a0a]/95 backdrop-blur-xl border-white/10'
+                        }`}
                     >
                       {link.subLinks.map((sub) => (
                         <button
                           key={sub.scrollId}
                           onClick={() => handleLinkClick(link, sub)}
-                          className={`block w-full text-left px-4 py-2.5 text-[10px] font-bold tracking-[0.2em] uppercase rounded-lg transition-all duration-300 hover:bg-[#D9B16F]/10 hover:text-[#D9B16F] ${
-                            theme === 'light' ? 'text-[#78716C]' : 'text-white/50'
-                          }`}
+                          className={`block w-full text-left px-4 py-2.5 text-[10px] font-bold tracking-[0.2em] uppercase rounded-lg transition-all duration-300 hover:bg-[#D9B16F]/10 hover:text-[#D9B16F] ${theme === 'light' ? 'text-[#78716C]' : 'text-white/50'
+                            }`}
                         >
                           {sub.name}
                         </button>
@@ -154,33 +151,33 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
           </div>
 
           <div className="hidden lg:flex items-center justify-end space-x-10">
-            <button 
+            <button
               onClick={onToggleTheme}
               className={`text-[10px] font-black tracking-[0.3em] uppercase transition-colors hover:text-[#D9B16F] ${theme === 'light' ? 'text-[#78716C]' : 'text-white/40'}`}
             >
               {theme === 'light' ? 'DARK MODE' : 'LIGHT MODE'}
             </button>
-            
+
             <div className="relative p-[1.5px] rounded-full overflow-hidden group bg-[#D9B16F]/20">
-              <button 
+              <button
                 onClick={() => onNavigate('mentoring-booking')}
-                className={`relative px-8 py-3 rounded-full text-[11px] font-black tracking-[0.3em] uppercase transition-all duration-500 block z-10 ${
-                  theme === 'light' 
-                    ? 'bg-[#FAFAF9] text-[#1C1917] hover:bg-white' 
-                    : 'bg-[#1C1917] text-white hover:bg-[#292524]'
-                }`}
+                className={`relative px-8 py-3 rounded-full text-[11px] font-black tracking-[0.3em] uppercase transition-all duration-500 block z-10 ${theme === 'light'
+                  ? 'bg-[#FAFAF9] text-[#1C1917] hover:bg-white'
+                  : 'bg-[#1C1917] text-white hover:bg-[#292524]'
+                  }`}
               >
                 VIP BOOKING
               </button>
             </div>
           </div>
 
-          <button 
-            className="lg:hidden w-10 h-10 flex flex-col items-center justify-center space-y-2"
+          <button
+            className="lg:hidden w-10 h-10 flex flex-col items-center justify-center space-y-2 z-[90] relative"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <span className={`w-8 h-[2.5px] block ${theme === 'light' ? 'bg-[#1C1917]' : 'bg-white'}`} />
-            <span className={`w-8 h-[2.5px] block ${theme === 'light' ? 'bg-[#1C1917]' : 'bg-white'}`} />
+            <span className={`w-8 h-[2px] block transition-all duration-300 ${theme === 'light' ? 'bg-[#1C1917]' : 'bg-white'} ${mobileMenuOpen ? 'rotate-45 translate-y-[10px]' : ''}`} />
+            <span className={`w-8 h-[2px] block transition-all duration-300 ${theme === 'light' ? 'bg-[#1C1917]' : 'bg-white'} ${mobileMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`w-8 h-[2px] block transition-all duration-300 ${theme === 'light' ? 'bg-[#1C1917]' : 'bg-white'} ${mobileMenuOpen ? '-rotate-45 -translate-y-[10px]' : ''}`} />
           </button>
         </div>
       </motion.nav>
@@ -206,8 +203,8 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
                 {link.name}
               </motion.button>
             ))}
-            <button 
-              onClick={() => setMobileMenuOpen(false)} 
+            <button
+              onClick={() => setMobileMenuOpen(false)}
               className={`absolute top-12 right-12 text-6xl ${theme === 'light' ? 'text-black' : 'text-white'}`}
             >
               ×

@@ -47,14 +47,14 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
 
   return (
     <div className="relative min-h-[600vh] bg-[#050505]">
-      <nav className="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center mix-blend-difference">
-        <button onClick={onBack} className="text-[10px] tracking-[0.4em] text-white/60 hover:text-white transition-all uppercase flex items-center group">
-          <span className="mr-4 group-hover:-translate-x-2 transition-transform">←</span> Zurück
+      <nav className="fixed top-0 w-full z-50 px-6 py-6 md:py-8 flex justify-between items-center mix-blend-difference">
+        <button onClick={onBack} className="text-[10px] tracking-[0.2em] md:tracking-[0.4em] text-white/60 hover:text-white transition-all uppercase flex items-center group">
+          <span className="mr-2 md:mr-4 group-hover:-translate-x-2 transition-transform">←</span> Zurück
         </button>
-        <span className="text-[10px] tracking-[0.4em] text-white uppercase font-black">Das Mentoren-Duo</span>
+        <span className="text-[10px] tracking-[0.2em] md:tracking-[0.4em] text-white uppercase font-black">Das Mentoren-Duo</span>
       </nav>
 
-      <div className="relative h-[200vh] z-10">
+      <div className="relative min-h-[160vh] md:min-h-[200vh] z-10">
         <ScrollytellingCanvas onProgress={setLoadProgress} onLoaded={() => setIsLoaded(true)} customFrameUrl={(i) => getFrameUrl(i, 'faculty')} />
         <div className="sticky top-0 h-screen w-full pointer-events-none overflow-hidden">
           {FACULTY_BEATS.map((beat) => (
@@ -63,13 +63,13 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
         </div>
       </div>
 
-      <section id="team" className="relative z-20 bg-[#050505] py-48 px-6 lg:px-24">
+      <section id="team" className="relative z-20 bg-[#050505] py-24 md:py-48 px-6 lg:px-24">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-48"
+            className="text-center mb-24 md:mb-48"
           >
             <h4 className="text-[10px] font-bold tracking-[0.4em] text-[#E2C3B1] uppercase mb-6">Expertise & Leidenschaft</h4>
             <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-white uppercase leading-none">
@@ -77,9 +77,9 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
             </h2>
           </motion.div>
 
-          <div className="space-y-64">
+          <div className="space-y-32 md:space-y-64">
             {members.map((member, i) => (
-              <div key={member.name} className={`flex flex-col ${i % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-16 lg:gap-32 items-start`}>
+              <div key={member.name} className={`flex flex-col ${i % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 md:gap-16 lg:gap-32 items-start`}>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -87,7 +87,7 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
                   transition={{ duration: 1 }}
                   className="flex-1 w-full sticky top-32"
                 >
-                  <div className="aspect-[4/5] bg-white/[0.02] border border-white/5 rounded-[40px] overflow-hidden relative group shadow-[0_0_100px_rgba(226,195,177,0.05)]">
+                  <div className="aspect-[4/5] bg-white/[0.02] border border-white/5 rounded-[30px] md:rounded-[40px] overflow-hidden relative group shadow-[0_0_100px_rgba(226,195,177,0.05)]">
                     <img
                       src={member.imgSrc}
                       alt={member.name}
@@ -101,14 +101,14 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
                   initial={{ opacity: 0, x: i % 2 === 1 ? -40 : 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="flex-1 space-y-12"
+                  className="flex-1 space-y-8 md:space-y-12"
                 >
                   <div>
-                    <h4 className="text-[10px] font-bold tracking-[0.5em] text-[#E2C3B1]/40 uppercase mb-4">{member.role}</h4>
-                    <h3 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight leading-none">{member.name}</h3>
+                    <h4 className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] md:tracking-[0.5em] text-[#E2C3B1]/40 uppercase mb-4">{member.role}</h4>
+                    <h3 className="text-3xl md:text-6xl font-black text-white uppercase tracking-tight leading-none break-words">{member.name}</h3>
                   </div>
 
-                  <p className="text-white/40 text-xl font-light leading-relaxed">
+                  <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed">
                     {member.bio}
                   </p>
 
@@ -124,9 +124,9 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
                     </ul>
                   </div>
 
-                  <div className="flex flex-wrap gap-4 pt-8">
+                  <div className="flex flex-wrap gap-3 md:gap-4 pt-4 md:pt-8">
                     {member.expertise.map(exp => (
-                      <span key={exp} className="px-6 py-2 bg-white/[0.03] border border-white/5 rounded-full text-[9px] tracking-widest text-white/40 uppercase">
+                      <span key={exp} className="px-4 md:px-6 py-2 bg-white/[0.03] border border-white/5 rounded-full text-[9px] tracking-widest text-white/40 uppercase">
                         {exp}
                       </span>
                     ))}
@@ -138,9 +138,9 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
         </div>
       </section>
 
-      <section id="expertise" className="relative z-20 bg-[#080808] py-48 px-6 lg:px-24 border-t border-white/5">
+      <section id="expertise" className="relative z-20 bg-[#080808] py-24 md:py-48 px-6 lg:px-24 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -149,18 +149,18 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
             >
               <div>
                 <h4 className="text-[10px] font-bold tracking-[0.4em] text-[#E2C3B1] uppercase mb-6">Gemeinsame Expertise</h4>
-                <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white uppercase leading-none">
+                <h2 className="text-3xl md:text-6xl font-black tracking-tighter text-white uppercase leading-none">
                   Zwei Wege. <br /> Ein Ziel.
                 </h2>
               </div>
-              <p className="text-white/40 text-xl font-light leading-relaxed">
+              <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed">
                 Die BeautyAkademy ist das Ergebnis einer Synergie: Sonja Ackermanns 30-jährige klinische Erfahrung trifft auf Annette Fascher-Wendlandts 30-jährige Leidenschaft in der Schönheitsbranche.
               </p>
-              <p className="text-white/40 text-xl font-light leading-relaxed">
+              <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed">
                 Was Sonja durch chirurgische Präzision und mitochondriale Tiefe verankert, vollendet Annette durch ästhetische Empathie und ganzheitliche Anti-Aging-Konzepte. Gemeinsam bilden sie eine Allianz, die in der Branche ihresgleichen sucht.
               </p>
               <blockquote className="border-l-2 border-[#E2C3B1]/30 pl-6 mt-8">
-                <p className="text-white/60 text-lg italic font-light">
+                <p className="text-white/60 text-base md:text-lg italic font-light">
                   "Schönheit ist das harmonische Zusammenspiel von innerem Wohlbefinden und äußerer Ausstrahlung."
                 </p>
               </blockquote>
@@ -174,7 +174,7 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
               className="flex-1 w-full"
             >
               <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-[3/4] bg-white/[0.02] border border-white/5 rounded-[40px] overflow-hidden relative group shadow-[0_0_100px_rgba(226,195,177,0.05)]">
+                <div className="aspect-[3/4] bg-white/[0.02] border border-white/5 rounded-[30px] md:rounded-[40px] overflow-hidden relative group shadow-[0_0_100px_rgba(226,195,177,0.05)]">
                   <img
                     src="/images/team/team2.jpeg"
                     alt="Sonja Ackermann & Annette Fascher-Wendlandt"
@@ -182,7 +182,7 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80" />
                 </div>
-                <div className="aspect-[3/4] bg-white/[0.02] border border-white/5 rounded-[40px] overflow-hidden relative group shadow-[0_0_100px_rgba(226,195,177,0.05)]">
+                <div className="aspect-[3/4] bg-white/[0.02] border border-white/5 rounded-[30px] md:rounded-[40px] overflow-hidden relative group shadow-[0_0_100px_rgba(226,195,177,0.05)]">
                   <img
                     src="/images/team/team5.jpg"
                     alt="Sonja Ackermann & Annette Fascher-Wendlandt"
@@ -196,12 +196,12 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
         </div>
       </section>
 
-      <section className="relative z-20 bg-[#050505] py-48 px-6 lg:px-24 border-t border-white/5">
+      <section className="relative z-20 bg-[#050505] py-24 md:py-48 px-6 lg:px-24 border-t border-white/5">
         <div className="max-w-5xl mx-auto text-center">
-          <h3 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter mb-12">
+          <h3 className="text-2xl md:text-5xl font-bold text-white uppercase tracking-tighter mb-8 md:mb-12">
             "Wir kombinieren klinische Präzision mit ästhetischem Feingefühl, um Dir die Sicherheit zu geben, die Du für einen erfolgreichen Start brauchst."
           </h3>
-          <p className="text-white/30 text-[10px] tracking-[0.4em] uppercase font-black">
+          <p className="text-white/30 text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-black">
             — Sonja Ackermann & Annette Fascher-Wendlandt
           </p>
         </div>

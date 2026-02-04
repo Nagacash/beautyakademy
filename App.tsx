@@ -31,13 +31,13 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [loadProgress, setLoadProgress] = useState(100);
   const [isLoaded, setIsLoaded] = useState(true);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light'); 
-  const [sparkles, setSparkles] = useState<{id: number, x: number, y: number}[]>([]);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [sparkles, setSparkles] = useState<{ id: number, x: number, y: number }[]>([]);
   const lenisRef = useRef<Lenis | null>(null);
-  
+
   const { scrollYProgress } = useScroll();
   const indicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
-  
+
   const currentBg = theme === 'light' ? '#FAFAF9' : '#1C1917';
   const currentText = theme === 'light' ? '#292524' : '#FAFAF9';
   const accentColor = '#D9B16F'; // Luxe Champagne Gold
@@ -91,17 +91,17 @@ const App: React.FC = () => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
-  
+
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
   return (
-    <motion.div 
+    <motion.div
       animate={{ backgroundColor: currentBg }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="relative min-h-screen body-montserrat overflow-x-hidden"
     >
       <LoadingScreen progress={loadProgress} isComplete={isLoaded} />
-      
+
       <LiquidGlassBackground theme={theme} />
       <CookieBanner theme={theme} />
 
@@ -127,23 +127,23 @@ const App: React.FC = () => {
         {currentPage === 'home' && (
           <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
             <FloatingParticles theme={theme} />
-            
-            <div className="relative h-[200vh] z-10">
+
+            <div className="relative min-h-[160vh] md:min-h-[200vh] z-10">
               <ScrollytellingCanvas onProgress={setLoadProgress} onLoaded={() => setIsLoaded(true)} bgColor={currentBg} />
               <div className="sticky top-0 h-screen w-full pointer-events-none overflow-hidden">
                 {HOME_BEATS.map((beat) => (
                   <OverlayText key={beat.id} beat={beat} scrollProgress={scrollYProgress} theme={theme} />
                 ))}
-                <motion.div style={{ opacity: indicatorOpacity }} className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-30">
-                  <span className="text-[10px] md:text-[11px] font-bold tracking-[0.6em] md:tracking-[0.8em] uppercase mb-4 md:mb-6 text-[#D9B16F]">Artist Mentorship</span>
-                  <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 2.5, repeat: Infinity }} className="w-[1px] h-12 md:h-16 bg-gradient-to-b from-[#D9B16F] to-transparent shadow-[0_0_25px_#D9B16F]" />
+                <motion.div style={{ opacity: indicatorOpacity }} className="absolute bottom-8 md:bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-30">
+                  <span className="text-[9px] md:text-[11px] font-bold tracking-[0.4em] md:tracking-[0.8em] uppercase mb-3 md:mb-6 text-[#D9B16F] text-center w-full px-4">Artist Mentorship</span>
+                  <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 2.5, repeat: Infinity }} className="w-[1px] h-10 md:h-16 bg-gradient-to-b from-[#D9B16F] to-transparent shadow-[0_0_25px_#D9B16F]" />
                 </motion.div>
               </div>
             </div>
 
             <section id="philosophy" className="relative z-20 py-16 md:py-32 px-6 md:px-8 lg:px-24">
               <div className="max-w-[1400px] mx-auto">
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -157,7 +157,7 @@ const App: React.FC = () => {
                         DIE GLAMOUR <br /> AKADEMIE.
                       </h2>
                     </div>
-                    
+
                     <div className="space-y-8 md:space-y-10 text-lg md:text-xl font-light leading-relaxed max-w-3xl text-[#78716C]">
                       <p className={`border-l-[6px] md:border-l-[8px] border-[#D9B16F] pl-6 md:pl-10 italic text-xl md:text-2xl font-bold tracking-tight ${theme === 'light' ? 'text-[#292524]' : 'text-white/90'} vogue-serif`}>
                         "Erfolg ist kein Zufall, sondern die Summe aus Präzision und dem richtigen Glamour-Branding."
@@ -169,7 +169,7 @@ const App: React.FC = () => {
                   </div>
 
                   <div className="flex-1 w-full relative order-1 lg:order-none">
-                    <motion.div 
+                    <motion.div
                       whileHover={{ scale: 1.03 }}
                       transition={{ duration: 1 }}
                       className="aspect-[4/5] relative rounded-[32px] md:rounded-[60px] overflow-hidden border-[6px] md:border-[10px] border-white z-10 shadow-2xl float-animate"
@@ -181,13 +181,13 @@ const App: React.FC = () => {
                 </motion.div>
               </div>
             </section>
-            
+
             <TreatmentSpecials theme={theme} />
 
             <div id="courses">
               <CourseSection theme={theme} />
             </div>
-            
+
             <Curriculum onNavigate={handleNavigate} theme={theme} />
             <VideoSection theme={theme} />
 
@@ -195,7 +195,7 @@ const App: React.FC = () => {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-[#D9B16F]/[0.05] rounded-full blur-[150px] md:blur-[200px] pointer-events-none" />
               <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.2 }} className="text-center z-10 px-6 max-w-[1200px]">
                 <h3 className="text-xl md:text-3xl font-bold text-[#D9B16F] mb-8 md:mb-12 uppercase tracking-[0.4em] md:tracking-[0.5em]">WIR KÜMMERN UNS</h3>
-                <h2 className={`font-black tracking-tighter mb-12 md:mb-16 leading-[0.8] uppercase text-5xl sm:text-7xl md:text-[10rem] ${theme === 'light' ? 'text-[#1C1917]' : 'text-white'}`}>JETZT <br/> STARTEN.</h2>
+                <h2 className={`font-black tracking-tighter mb-12 md:mb-16 leading-[0.8] uppercase text-5xl sm:text-7xl md:text-[10rem] ${theme === 'light' ? 'text-[#1C1917]' : 'text-white'}`}>JETZT <br /> STARTEN.</h2>
                 <p className={`text-xl md:text-3xl font-light mb-16 md:mb-24 max-w-4xl mx-auto leading-relaxed text-[#78716C]`}>
                   Sichere Dir Deinen Platz in der nächsten Masterclass. Hamburg-Bergedorf erwartet Dich für ein Artist-Training auf Weltklasse-Niveau.
                 </p>
@@ -218,7 +218,7 @@ const App: React.FC = () => {
         {currentPage === 'alumni-network' && <AlumniNetworkPage key="an" onBack={() => handleNavigate('home')} />}
         {currentPage === 'mesotherapy' && <MesotherapyPage key="ms" onBack={() => handleNavigate('home')} />}
         {currentPage === 'mentoring-booking' && <MentoringBookingPage key="mb" onBack={() => handleNavigate('home')} />}
-        
+
         {currentPage === 'privacy' && <LegalPage key="privacy" type="privacy" theme={theme} onBack={() => handleNavigate('home')} />}
         {currentPage === 'tos' && <LegalPage key="tos" type="tos" theme={theme} onBack={() => handleNavigate('home')} />}
         {currentPage === 'impressum' && <LegalPage key="impressum" type="impressum" theme={theme} onBack={() => handleNavigate('home')} />}

@@ -52,20 +52,20 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, theme = 'light' }) => {
   };
 
   return (
-    <footer className={`relative ${isLight ? 'bg-[#FAFAF9]' : 'bg-[#1C1917]'} pt-16 pb-10 px-6 md:px-24 border-t ${isLight ? 'border-black/5' : 'border-white/5'} z-40 transition-colors duration-1000`}>
+    <footer className={`relative ${isLight ? 'bg-[#FAFAF9]' : 'bg-[#1C1917]'} pt-12 md:pt-16 pb-10 px-6 md:px-24 border-t ${isLight ? 'border-black/5' : 'border-white/5'} z-40 transition-colors duration-1000`}>
       <div className="max-w-[1700px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 md:gap-12 mb-12 md:mb-16">
           <div className="lg:col-span-2 space-y-6">
-            <h3 
+            <h3
               onClick={() => onNavigate?.('home')}
-              className={`font-black text-3xl tracking-[0.4em] ${isLight ? 'text-[#1C1917]' : 'text-white'} cursor-pointer uppercase`}
+              className={`font-black text-2xl md:text-3xl tracking-[0.3em] md:tracking-[0.4em] ${isLight ? 'text-[#1C1917]' : 'text-white'} cursor-pointer uppercase`}
             >
               BEAUTYAKADEMY
             </h3>
-            <p className={`text-lg font-light leading-relaxed max-w-sm ${isLight ? 'text-[#78716C]' : 'text-white/40'}`}>
+            <p className={`text-base md:text-lg font-light leading-relaxed max-w-sm ${isLight ? 'text-[#78716C]' : 'text-white/40'}`}>
               Handing over sixty years of clinical brilliance. We provide the safety, the technique, and the glamour-branding for the next generation of aesthetic artists.
             </p>
-            <div className="flex space-x-10">
+            <div className="flex space-x-8 md:space-x-10">
               {['VOGUE', 'GLAMOUR', 'LADY'].map((social) => (
                 <motion.a
                   key={social}
@@ -111,8 +111,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, theme = 'light' }) => {
               { name: 'TOS', id: 'tos' },
               { name: 'Impressum', id: 'impressum' }
             ].map((legal) => (
-              <button 
-                key={legal.id} 
+              <button
+                key={legal.id}
                 onClick={() => onNavigate?.(legal.id as any)}
                 className={`text-[11px] tracking-[0.3em] uppercase ${isLight ? 'text-[#1C1917]/30' : 'text-white/20'} hover:text-[#D9B16F] transition-colors`}
               >
