@@ -31,7 +31,7 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [loadProgress, setLoadProgress] = useState(100);
   const [isLoaded, setIsLoaded] = useState(true);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [sparkles, setSparkles] = useState<{ id: number, x: number, y: number }[]>([]);
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -44,12 +44,13 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 2,
+      wheelMultiplier: 1.5,
+      touchMultiplier: 2.5,
     });
 
     lenisRef.current = lenis;
@@ -130,6 +131,10 @@ const App: React.FC = () => {
 
             <div className="relative min-h-[160vh] md:min-h-[200vh] z-10">
               <ScrollytellingCanvas onProgress={setLoadProgress} onLoaded={() => setIsLoaded(true)} bgColor={currentBg} />
+
+              {/* Premium Gradient Overlay for Legibility & Mood */}
+              <div className="absolute inset-0 z-[5] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+
               <div className="sticky top-0 h-screen w-full pointer-events-none overflow-hidden">
                 {HOME_BEATS.map((beat) => (
                   <OverlayText key={beat.id} beat={beat} scrollProgress={scrollYProgress} theme={theme} />

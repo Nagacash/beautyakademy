@@ -21,7 +21,7 @@ const offers: SpecialOffer[] = [
     newPrice: '199€',
     duration: 'ca. 60 Minuten',
     description: 'Verleihen Sie Ihren Lippen unwiderstehliches Volumen und perfekte Kontur – für sinnliche, verführerische Lippen.',
-    img: '/images/work/work1.jpeg'
+    img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=450&fit=crop'
   },
   {
     id: 'threads',
@@ -31,7 +31,7 @@ const offers: SpecialOffer[] = [
     newPrice: '490€',
     duration: 'ca. 60 Minuten',
     description: 'Ein spezielles Verfahren, bei dem das Gesicht mit Hilfe von Fäden unter der Haut gezogen wird. Diese lösen sich zeitlich auf.',
-    img: '/images/treatment/Facial_Spa.png'
+    img: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&h=450&fit=crop'
   },
   {
     id: 'lipolyse',
@@ -41,7 +41,7 @@ const offers: SpecialOffer[] = [
     newPrice: '299€',
     duration: 'ca. 45 Minuten',
     description: 'Hilft die Struktur von Fettdepots in bestimmten Körperregionen zu zerstören und unterstützt das Schmelzen der Fette.',
-    img: '/images/treatment/Microneedling.png'
+    img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=450&fit=crop'
   },
   {
     id: 'lymph',
@@ -51,7 +51,7 @@ const offers: SpecialOffer[] = [
     newPrice: '99€',
     duration: 'ca. 60 Minuten',
     description: 'Unterstützt den natürlichen Lymphfluss und hilft bei der Regeneration des Gewebes nach ästhetischen Eingriffen.',
-    img: '/images/treatment/Lymph.jpg'
+    img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop'
   }
 ];
 
@@ -105,7 +105,7 @@ const TreatmentSpecials: React.FC<TreatmentSpecialsProps> = ({ theme = 'light' }
 
                 <div className="aspect-[4/3] rounded-2xl md:rounded-3xl overflow-hidden border border-black/5">
                   <img
-                    src={offer.img.startsWith('/') ? offer.img : `https://picsum.photos/seed/${offer.img}/600/450`}
+                    src={offer.img.startsWith('/') || offer.img.startsWith('http') ? offer.img : `https://picsum.photos/seed/${offer.img}/600/450`}
                     alt={offer.title}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
                   />

@@ -24,6 +24,15 @@ interface NavLink {
 const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggleTheme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks: NavLink[] = [
     {
@@ -76,9 +85,27 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
     }
   };
 
-  const navBg = theme === 'light' ? '#FAFAF9' : '#050505';
-  const textColor = theme === 'light' ? 'text-[#1C1917]' : 'text-white';
-  const borderColor = theme === 'light' ? 'rgba(217, 177, 111, 0.2)' : 'rgba(217, 177, 111, 0.3)';
+  const isLight = theme === 'light';
+  // If at top -> transparent (gradient implied by parent or absolute positioning). 
+  // If scrolled -> glassmorphism.
+  const navBg = isScrolled
+    ? (isLight ? 'rgba(250, 250, 249, 0.85)' : 'rgba(5, 5, 5, 0.85)')
+    : (isLight ? 'rgba(250, 250, 249, 0)' : 'rgba(5, 5, 5, 0)');
+
+  const backdropBlur = isScrolled ? 'backdrop-blur-md' : 'backdrop-blur-none';
+  const borderColor = isScrolled
+    ? (isLight ? 'rgba(217, 177, 111, 0.2)' : 'rgba(255, 255, 255, 0.05)')
+    : (isLight ? 'rgba(217, 177, 111, 0)' : 'rgba(255, 255, 255, 0)');
+
+  const shadowClass = isScrolled ? 'shadow-2xl' : '';
+  const paddingClass = isScrolled ? 'py-4 md:py-4' : 'py-6 md:py-8'; // Shrink on scroll
+
+  // Always white text on top transparent header if background is dark canvas, 
+  // BUT we need to respect the theme if users toggle it. 
+  // Assuming 'home' hero is always dark initially unless light theme is forced? 
+  // Let's stick to theme logic but maybe force white on top if it's the hero section? 
+  // For now, consistent theme logic is safer.
+  const textColor = isLight ? 'text-[#1C1917]' : 'text-white';
 
   return (
     <>
@@ -86,9 +113,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, theme, onToggl
         initial={{ y: 0 }}
         animate={{
           backgroundColor: navBg,
-          borderBottomColor: borderColor
+          borderBottomColor: borderColor,
         }}
-        className="fixed top-0 w-full z-[70] px-6 md:px-12 py-4 md:py-5 border-b shadow-2xl transition-all duration-500"
+        className={`fixed top-0 w-full z-[70] px-6 md:px-12 ${paddingClass} border-b ${backdropBlur} ${shadowClass} transition-all duration-500 ease-in-out`}
       >
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
 

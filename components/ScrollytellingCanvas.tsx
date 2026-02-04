@@ -9,18 +9,18 @@ interface ScrollytellingCanvasProps {
   bgColor?: string;
 }
 
-const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({ 
-  onProgress, 
-  onLoaded, 
-  customFrameUrl, 
-  bgColor = '#050505' 
+const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({
+  onProgress,
+  onLoaded,
+  customFrameUrl,
+  bgColor = '#050505'
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [images, setImages] = useState<HTMLImageElement[]>([]);
   const [imagesReady, setImagesReady] = useState(false);
-  
+
   const { scrollYProgress } = useScroll();
-  
+
   // Use spring for buttery smoothness
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 300,
@@ -41,8 +41,8 @@ const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({
     const img = imageList[index];
     if (!img) return;
 
-    // Responsive scaling (contain)
-    const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+    // Responsive scaling (cover)
+    const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
     const x = (canvas.width / 2) - (img.width / 2) * scale;
     const y = (canvas.height / 2) - (img.height / 2) * scale;
 
@@ -132,17 +132,16 @@ const ScrollytellingCanvas: React.FC<ScrollytellingCanvasProps> = ({
 
   return (
     <div className="sticky top-0 h-screen w-full overflow-hidden">
-      <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className="block w-full h-full object-contain"
       />
       {/* Enhanced Dynamic Vignette Overlay - Updated to Gold tint */}
-      <div 
-        className={`absolute inset-0 pointer-events-none transition-colors duration-1000 ${
-          bgColor === '#050505' 
-            ? 'bg-gradient-to-b from-black/70 via-transparent to-black/90 shadow-[inset_0_0_300px_rgba(0,0,0,0.8)]' 
+      <div
+        className={`absolute inset-0 pointer-events-none transition-colors duration-1000 ${bgColor === '#050505'
+            ? 'bg-gradient-to-b from-black/70 via-transparent to-black/90 shadow-[inset_0_0_300px_rgba(0,0,0,0.8)]'
             : 'bg-gradient-to-b from-white/40 via-transparent to-white/50 shadow-[inset_0_0_200px_rgba(217,177,111,0.15)]'
-        }`} 
+          }`}
       />
     </div>
   );

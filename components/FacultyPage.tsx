@@ -19,7 +19,7 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
       name: 'Sonja Ackermann',
       role: 'Krankenschwester & Heilpraktikerin | Medizinische Leitung',
       bio: 'Im Dienste der Gesundheit: Sonja ist seit über 30 Jahren medizinisch tätig. Ihre Laufbahn begann in der Gynäkologie und Onkologie sowie der OP-Pflege für Plastische Chirurgie. Seit 2011 ist sie in eigener Praxis in Hamburg Schnelsen tätig und vereint fundiertes klinisches Wissen mit modernster mitochondrialer Medizin und funktioneller Stressmedizin.',
-      imgSrc: '/images/team/team1.jpeg',
+      imgSrc: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop',
       expertise: ['OP-Pflege Plastische Chirurgie', 'Mitochondriale Medizin', 'Epigenetik', 'Funktionelle Medizin'],
       cv: [
         'Examen AK St. Georg, Hamburg',
@@ -33,7 +33,7 @@ const FacultyPage: React.FC<FacultyPageProps> = ({ onBack }) => {
       name: 'Annette Fascher-Wendlandt',
       role: 'Heilpraktikerin & Psychologische Beraterin | Ästhetische Leitung',
       bio: 'Schönheit als Berufung: Annette ist seit über 30 Jahren leidenschaftlich in der Schönheitsbranche tätig. Als Expertin für Anti-Aging und Bodyforming bei Mesoskin Hamburg ist sie spezialisiert auf Hyaluron, PDO-Fäden und Infusionstherapien. Ihre Philosophie: Ein harmonisches Zusammenspiel von innerem Wohlbefinden und äußerer Ausstrahlung.',
-      imgSrc: '/images/team/team4.jpg',
+      imgSrc: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?q=80&w=1976&auto=format&fit=crop',
       expertise: ['Anti-Aging Expertin', 'Infusionstherapie (NAD+)', 'PDO Fadenlifting', 'Psychologische Beratung'],
       cv: [
         'Heilpraktikerin seit 1995',

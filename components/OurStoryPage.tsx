@@ -68,7 +68,7 @@ const OurStoryPage: React.FC<OurStoryPageProps> = ({ onBack }) => {
                 viewport={{ once: true }}
                 className="aspect-[3/4] rounded-[30px] md:rounded-[40px] overflow-hidden border border-white/5 group"
               >
-                <img src="/images/team/team2.jpeg" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt="Sonja & Annette" />
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt="Sonja & Annette" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#050505] via-transparent to-transparent" />
               </motion.div>
               <motion.div
@@ -78,7 +78,7 @@ const OurStoryPage: React.FC<OurStoryPageProps> = ({ onBack }) => {
                 transition={{ delay: 0.1 }}
                 className="aspect-[3/4] rounded-[30px] md:rounded-[40px] overflow-hidden border border-white/5 group"
               >
-                <img src="/images/team/team5.png" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt="Sonja & Annette" />
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt="Sonja & Annette" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#050505] via-transparent to-transparent" />
               </motion.div>
               <motion.div
@@ -88,7 +88,7 @@ const OurStoryPage: React.FC<OurStoryPageProps> = ({ onBack }) => {
                 transition={{ delay: 0.2 }}
                 className="aspect-[3/4] rounded-[30px] md:rounded-[40px] overflow-hidden border border-white/5 group"
               >
-                <img src="/images/team/team6.png" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt="Team" />
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt="Team" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#050505] via-transparent to-transparent" />
               </motion.div>
               <motion.div
